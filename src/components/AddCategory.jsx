@@ -1,31 +1,43 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-export const AddCategory = ({setCategorias}) => {
+export const AddCategory = ({onNewCategory}) => {
 
-    const [inputValue, setInputValue] = useState('Ingrese la búsqueda acá ...')
+    const [inputValue, setInputValue] = useState('')
     
     /// manejadores de Eventos
-    const handleInputChange = (evento) => {
+    const handleInputChange = ( evento) => {
        // console.log(evento.target.value);
          setInputValue(evento.target.value);   
     }
-    const handleSubmit =(evento) => {
 
+    const OnSubmit =(evento) => {
+     
         evento.preventDefault();
-        if(inputValue.trim().length > 2) //Si el texto digitado es mayor a 2 caracteres No lo agrega a la lista
-        {
-            setCategorias( cat => {
-                return [inputValue, ...cat]
-            })
+
+        if(inputValue.trim().length <= 1) return; //Si el texto digitado es mayor a 2 caracteres No lo agrega a la lista
             setInputValue('');
-
-        }
-
+            console.log('Texto:', inputValue.trim())
+            onNewCategory(inputValue.trim())
     }
 
+
+    // const handleSubmit =(evento) => {
+     
+    //     evento.preventDefault();
+    //     if(inputValue.trim().length > 2) //Si el texto digitado es mayor a 2 caracteres No lo agrega a la lista
+    //     {
+    //         setCategorias( cat => {
+    //             return [inputValue, ...cat]
+    //         })
+    //         setInputValue('');
+
+    //     }
+
+    // }
+
   return (
-    <form onSubmit={ (event) => handleSubmit(event) }>
+    <form onSubmit={ (event) => OnSubmit(event) } aria-label ="form">
         <input
             type="text"
             value={ inputValue } 
@@ -36,7 +48,7 @@ export const AddCategory = ({setCategorias}) => {
 
 AddCategory.propTypes = {
 
-    setCategorias: PropTypes.func.isRequired
+  //  setCategorias: PropTypes.func.isRequired
 }
 
 //export default AddCategory

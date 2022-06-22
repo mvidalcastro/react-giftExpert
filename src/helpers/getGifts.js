@@ -15,7 +15,4 @@ export const getGift = async( categoria ) => {
 
      return gifts;
 
-   // console.log(gifts);
-   // setImagen(gifts);
-   // getImages();
 }

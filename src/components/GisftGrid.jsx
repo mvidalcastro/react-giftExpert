@@ -28,6 +28,10 @@ export const GisftGrid = ( {categoria} ) => {
   )
 }
 
-GisftGrid.propTypes = {}
+GisftGrid.propTypes = {
+
+  categoria: PropTypes.string.isRequired
+
+}
 
 //export default GisftGrid

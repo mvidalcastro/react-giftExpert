@@ -8,9 +8,15 @@ const GiftExpertApp = props => {
    
      const [categorias, setCategorias] = useState(['Simpsons']);
 
+     const onAddCategory = (newCategory) => {
+      if( categorias.includes(newCategory)) return;
+      setCategorias([newCategory, ...categorias])
+
+     }
+
      return <>             
                <h2> GiftExpertApp</h2>                  
-               <AddCategory setCategorias = { setCategorias }/>
+               <AddCategory onNewCategory = { (value)=> {onAddCategory(value)} }/>
                <br />
                
                <ol>
